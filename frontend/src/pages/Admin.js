@@ -352,36 +352,215 @@ function HairstylesAdmin() {
 function GalleryAdmin() {
   const [items, setItems] = useState([]);
   const [adding, setAdding] = useState(null);
-  const load = () => api.get("/gallery?all=true").then(({ data }) => setItems(data));
-  useEffect(() => { load(); }, []);
-  const save = async () => {
-    try { await api.post("/admin/gallery", adding); toast.success("Added"); setAdding(null); load(); }
-    catch (e) { toast.error(apiError(e.response?.data?.detail)); }
+  const [uploading, setUploading] = useState(false);
+
+  const load = () =>
+    api
+      .get("/gallery?all=true")
+      .then(({ data }) => setItems(data));
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const choosePhoto = (event) => {
+    const file = event.target.files?.[0];
+
+    if (!file) return;
+
+    const allowedTypes = [
+      "image/jpeg",
+      "image/png",
+      "image/webp",
+    ];
+
+    if (!allowedTypes.includes(file.type)) {
+      toast.error("Please choose a JPG, PNG or WEBP image");
+      event.target.value = "";
+      return;
+    }
+
+    if (file.size > 8 * 1024 * 1024) {
+      toast.error("Photo must be 8 MB or smaller");
+      event.target.value = "";
+      return;
+    }
+
+    setAdding((current) => ({
+      ...current,
+      file,
+      preview: URL.createObjectURL(file),
+    }));
   };
-  const del = async (id) => { await api.delete(`/admin/gallery/${id}`); toast.success("Deleted"); load(); };
+
+  const save = async () => {
+    if (!adding?.file) {
+      toast.error("Choose a photo first");
+      return;
+    }
+
+    const form = new FormData();
+
+    form.append("photo", adding.file);
+    form.append("title", adding.title || "");
+    form.append("category", adding.category || "General");
+
+    try {
+      setUploading(true);
+
+      await api.post("/admin/gallery/upload", form);
+
+      toast.success("Photo uploaded");
+
+      if (adding.preview) {
+        URL.revokeObjectURL(adding.preview);
+      }
+
+      setAdding(null);
+      load();
+    } catch (e) {
+      toast.error(apiError(e.response?.data?.detail));
+    } finally {
+      setUploading(false);
+    }
+  };
+
+  const del = async (id) => {
+    try {
+      await api.delete(`/admin/gallery/${id}`);
+      toast.success("Deleted");
+      load();
+    } catch (e) {
+      toast.error(apiError(e.response?.data?.detail));
+    }
+  };
+
   return (
     <div>
-      <div className="flex justify-end mb-4"><button onClick={() => setAdding({ title: "", category: "General", image: "", active: true })} data-testid="admin-add-gallery" className="ab-btn-gold px-5 py-2 text-sm flex items-center gap-2"><Plus size={15} /> Add Photo</button></div>
+
+      <div className="flex justify-end mb-4">
+        <button
+          onClick={() =>
+            setAdding({
+              title: "",
+              category: "General",
+              file: null,
+              preview: "",
+            })
+          }
+          data-testid="admin-add-gallery"
+          className="ab-btn-gold px-5 py-2 text-sm flex items-center gap-2"
+        >
+          <Plus size={15} />
+          Upload Photo
+        </button>
+      </div>
+
       <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
         {items.map((g) => (
-          <div key={g.id} className="ab-card overflow-hidden group relative" data-testid={`admin-gallery-${g.id}`}>
-            <img src={g.image} alt={g.title} className="w-full aspect-square object-cover" />
+          <div
+            key={g.id}
+            className="ab-card overflow-hidden group relative"
+            data-testid={`admin-gallery-${g.id}`}
+          >
+            <img
+              src={g.image}
+              alt={g.title}
+              className="w-full aspect-square object-cover"
+            />
+
             <div className="p-2 flex items-center justify-between">
-              <span className="text-xs truncate">{g.title}</span>
-              <button onClick={() => del(g.id)} className="text-[#b44]"><Trash2 size={14} /></button>
+              <span className="text-xs truncate">
+                {g.title}
+              </span>
+
+              <button
+                onClick={() => del(g.id)}
+                className="text-[#b44]"
+              >
+                <Trash2 size={14} />
+              </button>
             </div>
           </div>
         ))}
       </div>
+
       {adding && (
-        <Modal title="Add Gallery Photo" onClose={() => setAdding(null)}>
-          <input className="ab-input" placeholder="Title" value={adding.title} onChange={(e) => setAdding({ ...adding, title: e.target.value })} data-testid="gallery-form-title" />
-          <input className="ab-input" placeholder="Category" value={adding.category} onChange={(e) => setAdding({ ...adding, category: e.target.value })} />
-          <input className="ab-input" placeholder="Image URL" value={adding.image} onChange={(e) => setAdding({ ...adding, image: e.target.value })} data-testid="gallery-form-image" />
-          {adding.image && <img src={adding.image} alt="preview" className="w-full h-40 object-cover rounded-lg" />}
-          <button onClick={save} className="ab-btn-gold w-full py-2.5" data-testid="gallery-form-save">Add</button>
+        <Modal
+          title="Upload Gallery Photo"
+          onClose={() => {
+            if (adding.preview) {
+              URL.revokeObjectURL(adding.preview);
+            }
+
+            setAdding(null);
+          }}
+        >
+
+          <input
+            className="ab-input"
+            placeholder="Title e.g. Skin Fade"
+            value={adding.title}
+            onChange={(e) =>
+              setAdding({
+                ...adding,
+                title: e.target.value,
+              })
+            }
+            data-testid="gallery-form-title"
+          />
+
+          <input
+            className="ab-input"
+            placeholder="Category e.g. Fades"
+            value={adding.category}
+            onChange={(e) =>
+              setAdding({
+                ...adding,
+                category: e.target.value,
+              })
+            }
+          />
+
+          <label className="block border border-dashed rounded-lg p-6 text-center cursor-pointer">
+
+            <span className="text-sm">
+              {adding.file
+                ? adding.file.name
+                : "Click to choose a photo"}
+            </span>
+
+            <input
+              type="file"
+              accept="image/jpeg,image/png,image/webp"
+              onChange={choosePhoto}
+              className="hidden"
+            />
+
+          </label>
+
+          {adding.preview && (
+            <img
+              src={adding.preview}
+              alt="Preview"
+              className="w-full h-40 object-cover rounded-lg"
+            />
+          )}
+
+          <button
+            onClick={save}
+            disabled={uploading || !adding.file}
+            className="ab-btn-gold w-full py-2.5 disabled:opacity-50"
+            data-testid="gallery-form-save"
+          >
+            {uploading
+              ? "Uploading..."
+              : "Upload Photo"}
+          </button>
+
         </Modal>
       )}
+
     </div>
   );
 }

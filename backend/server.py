@@ -20,6 +20,35 @@ from motor.motor_asyncio import AsyncIOMotorClient
 from pydantic import BaseModel, EmailStr
 from typing import List, Optional
 
+from fastapi import (
+    FastAPI,
+    APIRouter,
+    Request,
+    Response,
+    HTTPException,
+    Depends,
+    Query,
+    UploadFile,
+    File,
+    Form,
+)
+
+from starlette.staticfiles import StaticFiles
+
+app = FastAPI()
+
+UPLOAD_DIR = ROOT_DIR / "uploads"
+GALLERY_UPLOAD_DIR = UPLOAD_DIR / "gallery"
+
+GALLERY_UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
+
+app.mount(
+    "/uploads",
+    StaticFiles(directory=str(UPLOAD_DIR)),
+    name="uploads"
+)
+
+
 # ---------------------------------------------------------------------------
 # Setup
 # ---------------------------------------------------------------------------
@@ -704,6 +733,71 @@ async def create_gallery(body: GalleryInput, admin: dict = Depends(require_admin
     doc = {"id": new_id(), **body.model_dump()}
     await db.gallery.insert_one(doc)
     doc.pop("_id", None)
+    return doc
+
+@api.post("/admin/gallery/upload")
+async def upload_gallery_photo(
+    request: Request,
+    photo: UploadFile = File(...),
+    title: str = Form(""),
+    category: str = Form("General"),
+    admin: dict = Depends(require_admin),
+):
+    allowed_types = {
+        "image/jpeg": ".jpg",
+        "image/png": ".png",
+        "image/webp": ".webp"
+    }
+
+    if photo.content_type not in allowed_types:
+        raise HTTPException(
+            status_code=400,
+            detail="Please upload a JPG, PNG or WEBP image"
+        )
+
+    contents = await photo.read()
+
+    if not contents:
+        raise HTTPException(
+            status_code=400,
+            detail="The selected image is empty"
+        )
+
+    # Maximum 8 MB
+    if len(contents) > 8 * 1024 * 1024:
+        raise HTTPException(
+            status_code=400,
+            detail="Image must be 8 MB or smaller"
+        )
+
+    filename = (
+        f"{uuid.uuid4().hex}"
+        f"{allowed_types[photo.content_type]}"
+    )
+
+    file_path = GALLERY_UPLOAD_DIR / filename
+
+    file_path.write_bytes(contents)
+
+    image_url = (
+        f"{str(request.base_url).rstrip('/')}"
+        f"/uploads/gallery/{filename}"
+    )
+
+    doc = {
+        "id": new_id(),
+        "title": title.strip() or "Barbershop photo",
+        "category": category.strip() or "General",
+        "image": image_url,
+        "stored_filename": filename,
+        "active": True,
+        "created_at": now_utc().isoformat(),
+    }
+
+    await db.gallery.insert_one(doc)
+
+    doc.pop("_id", None)
+
     return doc
 
 
