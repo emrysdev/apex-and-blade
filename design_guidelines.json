@@ -1,0 +1,137 @@
+{
+  "project_name": "Apex & Blade - Barber Shop Booking & Management System",
+  "archetype": "ARCHETYPE 5: LUXURY & ARCHETYPE 4: SWISS HYBRID (Dark Charcoal & Warm Aged Brass)",
+  "emotional_tone": "Craftsmanship, Prestige, Tactile Elegance, Seamless Precision",
+  "theme": {
+    "mode": "Dark Luxury (Primary) with high contrast Bone White typography and Aged Brass accents",
+    "background_primary": "#0D0D0E",
+    "background_secondary": "#141416",
+    "background_elevated": "#1C1C20",
+    "border_color": "rgba(212, 175, 55, 0.18)",
+    "border_subtle": "rgba(255, 255, 255, 0.08)",
+    "text_primary": "#F4F1EA",
+    "text_secondary": "#A1A1AA",
+    "accent_gold": "#D4AF37",
+    "accent_brass": "#C5A059",
+    "accent_amber": "#E5A93C",
+    "surface_glass": "rgba(20, 20, 22, 0.75)"
+  },
+  "typography": {
+    "headings": {
+      "font_family": "Cormorant Garamond, Playfair Display, Georgia, serif",
+      "h1": "text-4xl sm:text-5xl lg:text-6xl font-bold tracking-tight text-[#F4F1EA] leading-[1.1]",
+      "h2": "text-2xl sm:text-3xl lg:text-4xl font-semibold tracking-tight text-[#F4F1EA]",
+      "h3": "text-xl sm:text-2xl font-medium text-[#F4F1EA]",
+      "h4": "text-lg sm:text-xl font-medium text-[#E4E4E7]"
+    },
+    "body": {
+      "font_family": "Manrope, Satoshi, system-ui, sans-serif",
+      "font_weights": {
+        "regular": 400,
+        "medium": 500,
+        "semibold": 600,
+        "bold": 700
+      },
+      "sizes": {
+        "large": "text-lg leading-relaxed text-[#A1A1AA]",
+        "base": "text-base leading-normal text-[#E4E4E7]",
+        "small": "text-sm text-[#A1A1AA]",
+        "caption": "text-xs tracking-wider uppercase text-[#C5A059]"
+      }
+    }
+  },
+  "spacing_and_layout": {
+    "philosophy": "Generous Spacing (2-3x default padding) with explicit asymmetric Bento Grids for marketing and high-density functional grids for admin controls.",
+    "container_padding": "px-4 sm:px-8 lg:px-16 py-12 lg:py-24",
+    "bento_marketing": "grid grid-cols-1 md:grid-cols-8 lg:grid-cols-12 gap-6 lg:gap-8",
+    "admin_dashboard_grid": "grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 gap-4 lg:gap-6",
+    "card_padding": "p-6 sm:p-8"
+  },
+  "surface_and_materials": {
+    "glass_header": "backdrop-blur-xl bg-[#0D0D0E]/80 border-b border-[#D4AF37]/20 sticky top-0 z-50",
+    "luxury_card": "bg-[#141416] border border-[#26262A] hover:border-[#D4AF37]/40 rounded-xl transition-all duration-300 shadow-[0_8px_30px_rgb(0,0,0,0.35)]",
+    "featured_card_glow": "relative bg-[#1C1C20] border border-[#D4AF37]/50 rounded-xl shadow-[0_0_25px_rgba(212,175,55,0.15)]",
+    "admin_card": "bg-[#141416] border border-[#26262A] rounded-lg p-5"
+  },
+  "image_urls": {
+    "hero_barber_chair": "https://images.unsplash.com/photo-1629881544138-c45fc917eb81?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHw0fHxiYXJiZXIlMjBoYWlyY3V0JTIwc3R5bGlzaCUyMG1lbiUyMGdyb29taW5nJTIwY2hhaXJ8ZW58MHx8fHwxNzg4MjQzNDYwfDA&ixlib=rb-4.1.0&q=85",
+    "hero_interior": "https://images.unsplash.com/photo-1675599193990-33d71150902b?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwxfHxiYXJiZXIlMjBoYWlyY3V0JTIwc3R5bGlzaCUyMG1lbiUyMGdyb29taW5nJTIwY2hhaXJ8ZW58MHx8fHwxNzg4MjQzNDYwfDA&ixlib=rb-4.1.0&q=85",
+    "barbershop_atmosphere": "https://images.unsplash.com/photo-1759142449398-89357aa1bb36?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzV8MHwxfHNlYXJjaHwzfHxiYXJiZXIlMjBoYWlyY3V0JTIwc3R5bGlzaCUyMG1lbiUyMGdyb29taW5nJTIwY2hhaXJ8ZW58MHx8fHwxNzg4MjQzNDYwfDA&ixlib=rb-4.1.0&q=85",
+    "vintage_chair_art": "https://images.unsplash.com/photo-1778676688264-2a5db8886ab3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w4NjA1NzR8MHwxfHNlYXJjaHw0fHxiYXJiZXJzaG9wJTIwaW50ZXJpb3IlMjB2aW50YWdlJTIwbW9kZXJuJTIwYmFyYmVyJTIwc2hvcHxlbnwwfHx8fDE3ODgyNDM0NjB8MA&ixlib=rb-4.1.0&q=85",
+    "hairstyles": [
+      {
+        "id": "style-fade-pompadour",
+        "title": "Signature Skin Fade & Pompadour",
+        "url": "https://images.unsplash.com/photo-1562004760-aceed7bb0fe3?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwzfHxtZW4lMjBoYWlyY3V0JTIwc3R5bGUlMjBmYWRlJTIwcG9tcGFkb3VyJTIwYmVhcmQlMjBncm9vbXxlbnwwfHx8fDE3ODgyNDM0Njh8MA&ixlib=rb-4.1.0&q=85",
+        "tag": "High Taper Fade"
+      },
+      {
+        "id": "style-textured-crop-beard",
+        "title": "Textured Modern Crop & Sculpted Beard",
+        "url": "https://images.unsplash.com/photo-1627100232173-acf3733f02bc?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHwyfHxtZW4lMjBoYWlyY3V0JTIwc3R5bGUlMjBmYWRlJTIwcG9tcGFkb3VyJTIwYmVhcmQlMjBncm9vbXxlbnwwfHx8fDE3ODgyNDM0Njh8MA&ixlib=rb-4.1.0&q=85",
+        "tag": "Beard Sculpt"
+      },
+      {
+        "id": "style-classic-comb-over",
+        "title": "Executive Side Part & Razor Lineup",
+        "url": "https://images.unsplash.com/photo-1662145349402-f78c521eccb0?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHw0fHxtZW4lMjBoYWlyY3V0JTIwc3R5bGUlMjBmYWRlJTIwcG9tcGFkb3VyJTIwYmVhcmQlMjBncm9vbXxlbnwwfHx8fDE3ODgyNDM0Njh8MA&ixlib=rb-4.1.0&q=85",
+        "tag": "Classic Cut"
+      },
+      {
+        "id": "style-slicked-back-taper",
+        "title": "Slicked Back Taper & Royal Shave",
+        "url": "https://images.unsplash.com/photo-1590410240244-9c28d8c26d3c?crop=entropy&cs=srgb&fm=jpg&ixid=M3w3NDk1Nzd8MHwxfHNlYXJjaHxfHxtZW4lMjBoYWlyY3V0JTIwc3R5bGUlMjBmYWRlJTIwcG9tcGFkb3VyJTIwYmVhcmQlMjBncm9vbXxlbnwwfHx8fDE3ODgyNDM0Njh8MA&ixlib=rb-4.1.0&q=85",
+        "tag": "Hot Towel Shave"
+      }
+    ]
+  },
+  "key_components_to_build": {
+    "customer_facing": [
+      "Navigation Header with Live Booking Status Indicator & Sticky CTA Button",
+      "Hero Section with Dual Action CTAs ('Book Appointment' & 'Explore Services')",
+      "Quick Stats Ribbon (e.g. 4.9★ Rating, 12K+ Cuts, Master Barbers, Hot Towel Included)",
+      "Services Catalog Grid with Pricing, Duration, Add-on selector, and Direct Book trigger",
+      "Interactive Gallery Showcase with Filter Tabs & Lightbox Modal",
+      "Multi-Step Seamless Booking Flow (Modal/Drawer or Dedicated Page):",
+      "  - Step 1: Select Service & Optional Add-ons",
+      "  - Step 2: Select Hairstyle Inspiration or Enter Custom Notes/Requests",
+      "  - Step 3: Choose Preferred Barber & Select Date + Live Time Slot",
+      "  - Step 4: Customer Details & Payment Method Selection (Pay at Shop vs Card)",
+      "  - Step 5: Confirmation with Booking Reference, QR Code/Summary, Calendar File Add",
+      "Customer Quick Rebooking & Account Management Modal",
+      "Contact, Business Hours, Interactive Location Map & Parking Info Section"
+    ],
+    "admin_dashboard": [
+      "Key Metrics Cards (Today's Bookings, Estimated Revenue, Top Hairstyles, Active Barbers)",
+      "Bookings Management Table with Filters (Status: Pending/Confirmed/Completed/Cancelled) & Quick Actions",
+      "Manual Booking Creation Modal for Walk-ins or Phone Reservations",
+      "Services & Add-ons CRUD Manager (Title, Description, Price, Duration, Category)",
+      "Hairstyle & Gallery Portfolio Manager (Image URL, Title, Category Tag, Visibility)",
+      "Blackout Dates & Shop Closure Scheduler (Holiday/Maintenance lock)",
+      "Shop Business Settings (Opening Hours, Barber Shifts, Shop Address, Contact Info)"
+    ]
+  },
+  "testing_attributes": {
+    "requirement": "ALL interactive components, buttons, navigation links, form inputs, status badges, price items, and table rows MUST include a descriptive data-testid attribute in kebab-case.",
+    "examples": [
+      "data-testid=\"nav-book-now-button\"",
+      "data-testid=\"service-card-master-cut\"",
+      "data-testid=\"booking-step-service-select\"",
+      "data-testid=\"booking-date-picker\"",
+      "data-testid=\"booking-time-slot-1430\"",
+      "data-testid=\"admin-tab-bookings\"",
+      "data-testid=\"admin-add-service-btn\"",
+      "data-testid=\"admin-blackout-date-picker\"",
+      "data-testid=\"quick-rebook-button\""
+    ]
+  },
+  "instructions_to_main_agent": [
+    "Use dark luxury theme (#0D0D0E base, #D4AF37 brass accent) throughout customer and admin views.",
+    "Ensure the booking flow is zero-friction, minimal steps, and available both as a direct modal/drawer and as a dedicated route/tab.",
+    "Include fast 'Book Now' sticky CTA buttons on mobile and desktop navigation headers.",
+    "Use Lucide-React icons for UI indicators (Calendar, Clock, Scissors, Check, Shield, User, DollarSign, MapPin, Phone, Star).",
+    "All API state management (services, gallery photos, blackout dates, bookings, business settings) must use React state with smooth fallback mock data or backend integration.",
+    "Do NOT use transparent backgrounds on dropdowns, headers, or overlays — always apply crisp dark backdrop blur or solid elevated surface.",
+    "Include sonner toast notifications for booking confirmations, admin actions, and errors."
+  ]
+}
