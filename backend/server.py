@@ -75,7 +75,7 @@ if TWILIO_ACCOUNT_SID and TWILIO_AUTH_TOKEN:
     _twilio_client = TwilioClient(TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN)
 
 logging.basicConfig(level=logging.INFO, format='%(asctime)s - %(name)s - %(levelname)s - %(message)s')
-logger = logging.getLogger("apexblade")
+logger = logging.getLogger("tkfades")
 
 app = FastAPI()
 api = APIRouter(prefix="/api")
@@ -298,7 +298,7 @@ def booking_email_html(booking: dict, service_name: str) -> str:
     return f"""
     <div style="font-family:Arial,sans-serif;background:#0D0D0E;color:#F4F1EA;padding:32px;">
       <div style="max-width:520px;margin:auto;background:#141416;border:1px solid #D4AF37;border-radius:12px;padding:32px;">
-        <h1 style="color:#D4AF37;font-size:24px;margin:0 0 8px;">Apex &amp; Blade</h1>
+        <h1 style="color:#D4AF37;font-size:24px;margin:0 0 8px;">TKfades</h1>
         <p style="color:#A1A1AA;margin:0 0 24px;">Booking {status}</p>
         <table style="width:100%;color:#F4F1EA;font-size:15px;">
           <tr><td style="padding:6px 0;color:#A1A1AA;">Reference</td><td style="text-align:right;font-weight:bold;">{booking['reference']}</td></tr>
@@ -849,8 +849,8 @@ DEFAULT_HOURS = {
 
 
 async def seed():
-    admin_email = os.environ.get("ADMIN_EMAIL", "admin@apexblade.com").lower()
-    admin_password = os.environ.get("ADMIN_PASSWORD", "admin123")
+    admin_email = os.environ.get("ADMIN_EMAIL", "Elegeanthony@gmail.com").lower()
+    admin_password = os.environ.get("ADMIN_PASSWORD", "Romeo360#")
     existing = await db.users.find_one({"email": admin_email})
     if not existing:
         await db.users.insert_one({
@@ -865,9 +865,9 @@ async def seed():
 
     if not await db.settings.find_one({"id": "shop"}):
         await db.settings.insert_one({
-            "id": "shop", "shop_name": "Apex & Blade", "tagline": "Master Barbers. Timeless Cuts.",
+            "id": "shop", "shop_name": "TKfades", "tagline": "Master Barbers. Timeless Cuts.",
             "address": "218 Craftsman Row, Downtown District", "phone": "(555) 018-2200",
-            "email": "hello@apexblade.com", "instagram": "@apexblade",
+            "email": "Elegeanthony@gmail.com / Romeo360#", "instagram": "@tkfadesmelborne",
             "about": "A modern barbershop rooted in classic craftsmanship. Precision fades, sculpted beards, and hot-towel shaves by master barbers.",
             "timezone": "America/New_York", "slot_interval": 30,
             "auto_confirm": True, "deposit_enabled": False, "hours": DEFAULT_HOURS,
@@ -912,7 +912,7 @@ async def seed():
 
 @api.get("/")
 async def root():
-    return {"message": "Apex & Blade API"}
+    return {"message": "TKfades API"}
 
 
 app.include_router(api)

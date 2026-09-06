@@ -33,7 +33,7 @@ export default function Login() {
       <div className="w-full max-w-md ab-card p-8">
         <div className="flex items-center gap-2 justify-center mb-2">
           <Scissors size={22} color="var(--ab-gold)" />
-          <span className="font-display text-2xl font-bold">Apex & Blade</span>
+          <span className="font-display text-2xl font-bold">TKfades</span>
         </div>
         <p className="text-center text-[#A1A1AA] text-sm mb-8">{mode === "login" ? "Sign in to your account" : "Create your account"}</p>
 

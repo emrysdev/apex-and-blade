@@ -14,7 +14,7 @@ const links = [
 export default function Layout({ children }) {
   const { user, logout } = useAuth();
   const [open, setOpen] = useState(false);
-  const [shop, setShop] = useState({ shop_name: "Apex & Blade", instagram: "@apexblade", address: "", phone: "", email: "" });
+  const [shop, setShop] = useState({ shop_name: "TKfades", instagram: "@tkfadesmelb", address: "", phone: "+61 450 086 525", email: "" });
   const nav = useNavigate();
 
   useEffect(() => {

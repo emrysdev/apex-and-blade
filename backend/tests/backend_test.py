@@ -1,4 +1,4 @@
-"""Apex & Blade backend API regression tests."""
+"""TKfades backend API regression tests."""
 import os
 import time
 import uuid
@@ -10,14 +10,14 @@ import requests
 BASE_URL = os.environ.get('REACT_APP_BACKEND_URL') or open('/app/frontend/.env').read().split('REACT_APP_BACKEND_URL=')[1].split('\n')[0].strip()
 API = BASE_URL.rstrip('/') + '/api'
 
-ADMIN_EMAIL = "admin@apexblade.com"
-ADMIN_PASSWORD = "admin123"
+ADMIN_EMAIL = "Elegeanthony@gmail.com"
+ADMIN_PASSWORD = "Romeo360#"
 
 
 def _future_weekday(offset_start=2):
     """Return a Y-m-d that is not Sunday, at least offset_start days ahead."""
     d = date.today() + timedelta(days=offset_start)
-    while d.weekday() == 6:  # Sunday closed
+    while d.weekday() == 6:  #  closed
         d += timedelta(days=1)
     return d.isoformat()
 

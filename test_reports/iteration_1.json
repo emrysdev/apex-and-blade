@@ -1,5 +1,5 @@
 {
-  "summary": "Full backend + frontend regression testing on Apex & Blade barber shop. 29 pytest tests cover public content, auth (register/login/logout/me), availability (Sunday closed, blackout empty, invalid service), booking creation with add-on totals, double-booking 409, customer /bookings/me with cancel, admin stats/bookings, all CRUD (services/addons/hairstyles/gallery/blackouts), settings auto_confirm toggle (pending status verified), and admin manual booking + status patch. Playwright covered Home/Services/Gallery/Contact loads, full 5-step guest booking flow ending on confirmation page with AB- reference, admin login->dashboard tabs (Settings incl. auto-confirm toggle), and role-protection (guest hitting /admin redirects to /login). Everything green.",
+  "summary": "Full backend + frontend regression testing on TKfades barber shop. 29 pytest tests cover public content, auth (register/login/logout/me), availability (Sunday closed, blackout empty, invalid service), booking creation with add-on totals, double-booking 409, customer /bookings/me with cancel, admin stats/bookings, all CRUD (services/addons/hairstyles/gallery/blackouts), settings auto_confirm toggle (pending status verified), and admin manual booking + status patch. Playwright covered Home/Services/Gallery/Contact loads, full 5-step guest booking flow ending on confirmation page with AB- reference, admin login->dashboard tabs (Settings incl. auto-confirm toggle), and role-protection (guest hitting /admin redirects to /login). Everything green.",
   "backend_issues": {"critical": [], "minor": []},
   "frontend_issues": {"ui_bugs": [], "integration_issues": [], "design_issues": []},
   "test_report_links": ["/app/backend/tests/backend_test.py", "/app/test_reports/pytest/pytest_results.xml"],
@@ -11,7 +11,7 @@
   ],
   "updated_files": ["/app/backend/tests/backend_test.py"],
   "success_rate": {"backend": "100% (29/29)", "frontend": "100% (all critical flows)"},
-  "test_credentials": "admin@apexblade.com / admin123 (admin). Customer registered per-run with TEST_ prefix.",
+  "test_credentials": "Elegeanthony@gmail.com / Romeo360# (admin). Customer registered per-run with TEST_ prefix.",
   "seed_data_creation": "Test bookings, service/addon/hairstyle/gallery/blackout CRUD entries all created and cleaned up within tests. Some TEST_* prefixed bookings remain in DB (guest + customer bookings on future dates and one manual admin booking) - safe (future dates only).",
   "retest_needed": false,
   "main_agent_can_self_test": true,
