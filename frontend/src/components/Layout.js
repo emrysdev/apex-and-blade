@@ -112,6 +112,7 @@ export default function Layout({ children }) {
             <p className="text-[#A1A1AA] text-sm">{shop.address}</p>
             <p className="text-[#A1A1AA] text-sm mt-1">{shop.phone}</p>
             <p className="text-[#A1A1AA] text-sm mt-1">{shop.email}</p>
+            <p className="text-[#A1A1AA] text-sm mt-1">{shop.instagram}</p>
           </div>
           <div>
             <p className="ab-eyebrow mb-3">Explore</p>
