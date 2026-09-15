@@ -37,7 +37,10 @@ from starlette.staticfiles import StaticFiles
 
 app = FastAPI()
 
-UPLOAD_DIR = ROOT_DIR / "uploads"
+# UPLOAD_DIR = ROOT_DIR / "uploads"
+UPLOAD_DIR = Path(
+    os.getenv("UPLOAD_DIR", str(ROOT_DIR / "uploads"))
+)
 GALLERY_UPLOAD_DIR = UPLOAD_DIR / "gallery"
 
 GALLERY_UPLOAD_DIR.mkdir(parents=True, exist_ok=True)
